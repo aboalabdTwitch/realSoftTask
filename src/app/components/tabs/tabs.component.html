@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light">
+<!-- <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Mu%E1%B8%A5ammad_ibn_M%C5%ABs%C4%81_al-Khw%C4%81rizm%C4%AB.png" width="30" height="30" class="d-inline-block align-top" alt="">
       Al Khwarizmy
@@ -8,28 +8,96 @@
   </nav>
 
 <div >
-<mat-tab-group style="max-width: 640px; position: relative;">
-    <mat-tab label="Published"> Published </mat-tab>
+
+<mat-tab-group>
+    <mat-tab label="Published"> <app-card></app-card>
+    </mat-tab>
     <mat-tab label="Expired"> Content 2 </mat-tab>
     <mat-tab label="Closed"> Content 3 </mat-tab>
     <mat-tab label="All Surveys"> Content 3 </mat-tab>
 
 
-    
-
   </mat-tab-group>
 
-     <section style="position: relative;
+     <section style="position: absolute;
     left: 750px;
-    bottom:60px;">
+    bottom:70px;">
 
         <div class="example-button-row">
-          <button mat-raised-button color="primary">Primary</button>
+          <button mat-raised-button color="primary">Go to Dashboard</button>
         </div>
       </section>
 
+      
+     <section style="position: absolute;
+     left: 900px;
+     bottom:115px;">
+ 
+ <div class="input-group rounded">
+  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+  aria-describedby="search-addon" />
+  <span class="input-group-text border-0" id="search-addon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+    </svg>
+  </span>
+</div>
+       </section>
+
+       <section style="position: absolute;
+       left: 1180px;
+       bottom:160px;">
+   
+           <div class="example-button-row">
+            <button mat-raised-button color="green">Filter</button>           </div>
+         </section>
     </div> 
 
 
     
-  
+   -->
+
+   <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Mu%E1%B8%A5ammad_ibn_M%C5%ABs%C4%81_al-Khw%C4%81rizm%C4%AB.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Al Khwarizmy
+    </a>
+    <p style="margin-left: 1050px;" class="navbar-brand">|</p>
+    <a href="#"  class="navbar-brand" style="margin-right: 2px;">العربيه</a>
+  </nav>
+
+<div >
+
+   
+
+   <div class="topOptions">
+    <button mat-button class="d-inline-block ml-2 greenBtn" >GO TO DASHBOARD</button>
+
+    <!-- <div class="input-group rounded">
+      <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+      aria-describedby="search-addon" />
+      
+    </div> -->
+    
+    <button class="d-inline-block ml-2" mat-stroked-button >FILTER</button>
+      <div class="filterOp"  [hidden]='true'>
+
+        <div class="text-right">
+        <button mat-button class="d-inline-block ml-2 secBtn" >CLEAR</button>
+        <button mat-button class="d-inline-block ml-2 greenBtn" >APPLY</button>
+      </div>
+      </div>
+  </div>
+
+  <div class="sort">
+    <span   class="material-icons">view_list</span>
+    <span   class="material-icons" >view_module</span>
+  </div>
+
+<mat-tab-group (selectedTabChange)='typeOfSurvey($event)'>
+
+<mat-tab label="Published"> <app-card  [type]='type' *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='testAny=$event'></app-card ></mat-tab>
+<mat-tab label="Expired" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='testAny=$event'></app-card> </mat-tab>
+<mat-tab label="Closed" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='testAny=$event'></app-card> </mat-tab>
+<mat-tab label="All Surveys" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='testAny=$event'></app-card> </mat-tab>
+</mat-tab-group>
