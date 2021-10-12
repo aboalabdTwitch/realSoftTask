@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 
-
+import {MatListModule} from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,7 +40,8 @@ import { DataService } from './data.service';
     MatFormFieldModule,
     MatGridListModule,
     MatTabsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatListModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -46,9 +46,29 @@
   <div class="cardName mt-2">{{filteredData2.SurveyNameEn}}</div>
 
   <div class="surPeriod" >
-    <span  > {{filteredData2.SurveyPeriods | json }} - {{22/3/2021 | date:'dd/MM/yyyy'}} </span>
+    <span *ngIf=" JSON(filteredData2.SurveyPeriods).length == 1" > {{JSON(filteredData2.SurveyPeriods)[0].START_DATE}} </span>
+
+    <span *ngIf="selectedDate1!=null" > {{selectedDate1}} </span>
+
+   <span *ngIf="selectedDate1==null">
+     
+    <mat-icon (click)="show()" *ngIf="JSON(filteredData2.SurveyPeriods).length != 1">more_vert</mat-icon>
+    <mat-card *ngIf="showFlag"> 
+
+      <span  *ngIf=" JSON(filteredData2.SurveyPeriods).length > 1">
+        <mat-list-item *ngFor="let item of JSON(filteredData2.SurveyPeriods)">
+          <!-- <mat-icon matListIcon>close</mat-icon> -->
+        
+          <ul [id]="item.ID" (click)="selectedDate(item)" style="border: 0px;" *ngIf="showFlag" > <span style="color: #686868 ;" >{{item.START_DATE}}</span> </ul>
+        </mat-list-item>
+ 
+      </span> 
+    </mat-card>
+    </span>
   </div>
 </mat-card> 
+
+
 </div>  
 
 <div >

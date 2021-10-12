@@ -17,7 +17,49 @@ export class DataService {
   constructor() { }
 
 
-  dataJson:any[]=
+  dataJson:any[]=[
+   {
+      "TEMPLATE_ID":27865,
+      "TemplateName":"Disable Enable control #2 - Call Center ",
+      "TemplateNameAr":" # تفعيل تعطيل ك ون ر تول 2 - مركز اتصال ",
+      "TemplateNameEn":"Disable Enable control #2 - Call Center ",
+      "SurveyName":"Disable Enable control #2",
+      "SurveyNameAr":" تفعيل تعطيل ك ون ر تول # 2",
+      "SurveyNameEn":"Disable Enable control #2",
+      "SRV_ID":9223,
+      "SystemType":3,
+      "SURVEY_STATUS_AR":" منشورة ",
+      "SURVEY_STATUS_EN":"Published",
+      "SurveyPeriods":"[{\"ID\":25710,\"START_DATE\":\"2021-06-30T00:00:00\",\"END_DATE\":\"2022-02-28T00:00:00\"}]"
+   },{
+      "TEMPLATE_ID":26070,
+      "TemplateName":"periods test - Call Center ",
+      "TemplateNameAr":" فحص الف ر تات - ???? ????? ",
+      "TemplateNameEn":"periods test - Call Center ",
+      "SurveyName":"periods test",
+      "SurveyNameAr":" فحص الف ر تات ",
+      "SurveyNameEn":"periods test",
+      "SRV_ID":8866,
+      "SystemType":3,
+      "SURVEY_STATUS_AR":"منشورة ",
+      "SURVEY_STATUS_EN":"Published",
+      "SurveyPeriods":"[{\"ID\":2510,\"START_DATE\":\"2021-06-30T00:00:00\",\"END_DATE\":\"2022-02-28T00:00:00\"},{\"ID\":257101,\"START_DATE\":\"2021-06-30T00:00:00\",\"END_DATE\":\"2022-02-28T00:00:00\"}]"
+   },{
+      "TEMPLATE_ID":270,
+      "TemplateName":"periods test - Call Center ",
+      "TemplateNameAr":" فحص الف ر تات - ???? ????? ",
+      "TemplateNameEn":"periods test - Call Center ",
+      "SurveyName":"periods test",
+      "SurveyNameAr":" فحص الف ر تات ",
+      "SurveyNameEn":"periods test",
+      "SRV_ID":8866,
+      "SystemType":3,
+      "SURVEY_STATUS_AR":"منشورة ",
+      "SURVEY_STATUS_EN":"Published",
+      "SurveyPeriods":"[{\"ID\":2510,\"START_DATE\":\"2021-06-30T00:00:00\",\"END_DATE\":\"2022-02-28T00:00:00\"},{\"ID\":257101,\"START_DATE\":\"2021-06-30T00:00:00\",\"END_DATE\":\"2022-02-28T00:00:00\"}]"
+   }]
+
+  /*dataJson:any[]=
     [
        {
           "TEMPLATE_ID":27865,
@@ -1000,6 +1042,8 @@ export class DataService {
           "SurveyPeriods":"[{\"ID\":5664,\"START_DATE\":\"2020-04-06T00:00:00\",\"END_DATE\":\"2020-04-29T00:00:00\"}]"
        }
     ]
+
+    */
  ;
 
  setType(type:string){

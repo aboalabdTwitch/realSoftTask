@@ -1,3 +1,4 @@
+import { JsonpClientBackend } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscriber, Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
@@ -10,7 +11,7 @@ import { DataService } from 'src/app/data.service';
 })
 export class CardComponent implements OnInit {
 
-
+  showFlag :boolean=false;
   @Input() filteredData2!:any;
   @Input() type:string="Published";
 
@@ -51,14 +52,20 @@ export class CardComponent implements OnInit {
  endDate='';
 
 
-
+ filteredData:any;  
   ngOnInit(): void {
+   
+    this.filteredData=this.data.getData();
 
     }
 
     
 
+JSON(data:any ){
+     var ss=JSON.parse( this.filteredData2.SurveyPeriods);
+     return ss;
 
+}
     onSelected(card:any,type:string){
       console.log( this.data.preSelcetedCard+" pre commit ")
 
@@ -104,7 +111,17 @@ export class CardComponent implements OnInit {
 
     }
 
+selectedDate1:any;
+selectedDate(data :any){
+      this.selectedDate1=data.START_DATE;
+      this.showFlag=false;
+      console.log('hgggggggggggggggggggggggggggggggggggggggggggg')
+    }
 
+    show(){
+      this.showFlag=!this.showFlag;
+      
+    }
   check(){
   //  this.filteredData=this.data.getData();
   //  console.log(this.type);
