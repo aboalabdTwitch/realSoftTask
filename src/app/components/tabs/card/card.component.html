@@ -1,43 +1,17 @@
 
-<!-- <mat-grid-list cols="4" rowHeight="200px"  >
-  <mat-grid-tile >
-
-
-    <mat-card class="example-card">
-      <div>
-      <mat-card-content  class="center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-            </svg>
-  
-            <mat-card-title class='cardName'>Servey Name</mat-card-title>
-  
-            <div class="surPeriod">
-              <span > {{22/3/2020 | date:'dd/MM/yyyy'}} - {{22/3/2021 | date:'dd/MM/yyyy'}} </span>
-            </div>
-  
-  
-           
-  
-      </mat-card-content>
-      </div>
-  
-    </mat-card>
-
-
-</mat-grid-tile>
-
-
-  
-</mat-grid-list> -->
-
 
 <div class="surCard col-3">
 
-  <div >
-  <mat-card class='published'
+  <div class="container" >
+    <div class="row row-cols-0">
+      <div  class="col">
+
+        
+
+        
+  <mat-card [ngClass]='filteredData2.SURVEY_STATUS_EN== "Published" ?"published" :"expired"' 
    id={{filteredData2.TEMPLATE_ID}} 
-   *ngIf='filteredData2.SURVEY_STATUS_EN== "Published"' (click)='onSelected(filteredData2,"Published")'>
+    (click)='onSelected(filteredData2,filteredData2.SURVEY_STATUS_EN)'>
 
     <div class="cardIcon">
     <span class="material-icons rot-45">send</span>
@@ -46,20 +20,25 @@
   <div class="cardName mt-2">{{filteredData2.SurveyNameEn}}</div>
 
   <div class="surPeriod" >
-    <span *ngIf=" JSON(filteredData2.SurveyPeriods).length == 1" > {{JSON(filteredData2.SurveyPeriods)[0].START_DATE}} </span>
+    <span *ngIf="JSONMe(filteredData2.SurveyPeriods)&& JSONMe(filteredData2.SurveyPeriods).length == 1" > {{JSONMe(filteredData2.SurveyPeriods)[0].START_DATE | date:'dd/MM/yyyy'}} - {{  JSONMe(filteredData2.SurveyPeriods)[0].END_DATE | date:'dd/MM/yyyy'}} </span>
 
-    <span *ngIf="selectedDate1!=null" > {{selectedDate1}} </span>
+     <span *ngIf="selectedDateStart!=null" > {{selectedDateStart | date:'dd/MM/yyyy'}} - {{selectedDateEnd |date:'dd/MM/yyyy' }} </span>
 
-   <span *ngIf="selectedDate1==null">
+   <span *ngIf="selectedDateStart==null && JSONMe(filteredData2.SurveyPeriods).length >1" >
      
-    <mat-icon (click)="show()" *ngIf="JSON(filteredData2.SurveyPeriods).length != 1">more_vert</mat-icon>
-    <mat-card *ngIf="showFlag"> 
-
-      <span  *ngIf=" JSON(filteredData2.SurveyPeriods).length > 1">
-        <mat-list-item *ngFor="let item of JSON(filteredData2.SurveyPeriods)">
-          <!-- <mat-icon matListIcon>close</mat-icon> -->
+    <div >
+    <p>select period   <mat-icon (click)="show()" >more_vert </mat-icon></p>
+    </div>
+    <mat-card *ngIf="showFlag" style="margin: -17px 0;"> 
+ 
+      <span>
+        <mat-list-item *ngFor="let item of JSONMe(filteredData2.SurveyPeriods)">
+      
         
-          <ul [id]="item.ID" (click)="selectedDate(item)" style="border: 0px;" *ngIf="showFlag" > <span style="color: #686868 ;" >{{item.START_DATE}}</span> </ul>
+          <ul [id]="item.ID" (click)="selectedDate(item)"
+           style="border: 0px;" *ngIf="showFlag" > 
+           <span style="color: #686868 ;" >{{item.START_DATE |date:'dd/MM/yyyy' }} - {{item.END_DATE |date:'dd/MM/yyyy'}}</span> 
+          </ul>
         </mat-list-item>
  
       </span> 
@@ -67,14 +46,28 @@
     </span>
   </div>
 </mat-card> 
+ 
 
 
-</div>  
 
-<div >
+
+
+</div>
+</div>
+</div>
+</div>
+  
+ 
+
+
+
+
+<!-- 
 <mat-card  class='expired'
  id={{filteredData2.TEMPLATE_ID}} 
-  *ngIf='filteredData2.SURVEY_STATUS_EN == "Expired"'  (click)='onSelected(filteredData2,"Expired")'>
+  *ngIf='filteredData2.SURVEY_STATUS_EN == "Expired"'
+  (click)='onSelected(filteredData2,"Expired")'>
+
   <div class="cardIcon">
     <span class="material-icons rot-45">send</span>
   </div>
@@ -82,11 +75,32 @@
   <div class="cardName mt-2">{{filteredData2.SurveyNameEn}}</div>
 
   <div class="surPeriod">
-    <span > {{22/3/2020 | date:'dd/MM/yyyy'}} - {{22/3/2021 | date:'dd/MM/yyyy'}} </span>
-  </div>
-</mat-card>      
-<button (click)='check()'>check</button>
-</div>
-</div>
-  
+    <span *ngIf=" JSON(filteredData2.SurveyPeriods).length == 1" > {{JSON(filteredData2.SurveyPeriods)[0].START_DATE | date:'dd/MM/yyyy'}} - {{  JSON(filteredData2.SurveyPeriods)[0].END_DATE | date:'dd/MM/yyyy'}} </span>
+
+    <span *ngIf="selectedDateStart!=null" > {{selectedDateStart | date:'dd/MM/yyyy'}} - {{selectedDateEnd |date:'dd/MM/yyyy' }} </span>
+
+   <span *ngIf="selectedDateStart==null && JSON(filteredData2.SurveyPeriods).length >1" >
+     
+    <div >
+    <p>select period   <mat-icon (click)="show()" >more_vert </mat-icon></p>
+    </div>
+    <mat-card *ngIf="showFlag" style="margin: -17px 0;"> 
  
+      <span>
+        <mat-list-item *ngFor="let item of JSON(filteredData2.SurveyPeriods)">
+          <!-- <mat-icon matListIcon>close</mat-icon> -->
+        
+          <!-- <ul [id]="item.ID" (click)="selectedDate(item)"
+           style="border: 0px;" *ngIf="showFlag" > 
+           <span style="color: #686868 ;" >{{item.START_DATE |date:'dd/MM/yyyy' }} - {{item.END_DATE |date:'dd/MM/yyyy'}}</span> 
+          </ul>
+        </mat-list-item>
+ 
+      </span> 
+    </mat-card>
+    </span>
+
+
+
+  </div>
+</mat-card>   --> -->
