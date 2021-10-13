@@ -18,6 +18,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { TabsComponent } from './components/tabs/tabs.component';
 import {MatButtonModule} from '@angular/material/button';
 import { DataService } from './data.service';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -41,7 +42,8 @@ import { DataService } from './data.service';
     MatGridListModule,
     MatTabsModule,
     FontAwesomeModule,
-    MatListModule
+    MatListModule,
+    MatInputModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
