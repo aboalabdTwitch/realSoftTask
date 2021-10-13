@@ -22,15 +22,15 @@
 
 <mat-tab-group (selectedTabChange)='typeOfSurvey($event)' class="p-2 w-100 bd-highlight" > 
 
-<mat-tab label="Published"> <app-card  [type]='type' *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='selctedCardInfo=$event'></app-card ></mat-tab>
-<mat-tab label="Expired" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='selctedCardInfo=$event'></app-card> </mat-tab>
-<mat-tab label="Closed" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='selctedCardInfo=$event'></app-card> </mat-tab>
-<mat-tab label="All Surveys" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='selctedCardInfo=$event'></app-card> </mat-tab>
+<mat-tab label="Published"> <app-card  [type]='type' *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='selctedCard($event)'></app-card ></mat-tab>
+<mat-tab label="Expired" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='selctedCard($event)'></app-card> </mat-tab>
+<mat-tab label="Closed" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data'(cardSelected)='selctedCard($event)'></app-card> </mat-tab>
+<mat-tab label="All Surveys" > <app-card [filteredData2]='filteredData' [type]='type'  *ngFor='let data of filteredData' [filteredData2]='data' (cardSelected)='selctedCard($event)'></app-card> </mat-tab>
 </mat-tab-group>
 
 
-<div class="p-2 flex-shrink-1 bd-highlight">
-  <button mat-button class="d-inline-block ml-2 greenBtn" >GO TO DASHBOARD</button>
+<div class="p-2 flex-shrink-1 bd-highlight" >
+  <button mat-button class="d-inline-block ml-2 greenBtn" [disabled]='dashboardFlag' >GO TO DASHBOARD</button>
 
 </div>
     <div class="p-2 flex-shrink-1 bd-highlight">
@@ -45,8 +45,8 @@
 
     <div class="p-2 flex-shrink-1 bd-highlight">
 
-      <button class="d-inline-block ml-2" mat-stroked-button >FILTER</button>
-      <div class="filterOp"  [hidden]='false' >
+      <button class="d-inline-block ml-2" mat-stroked-button  (click)='filterButton()' >FILTER</button>
+      <div class="filterOp"  [hidden]='filterButtonFlag' >
 
         <div class="text-right">
           <mat-form-field class="example-full-width" appearance="fill">

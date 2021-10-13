@@ -18,6 +18,10 @@ export class TabsComponent implements OnInit {
   startDateFiltered:any;
   endDateFiltered:any;
 
+  filterButtonFlag=true;
+
+  dashboardFlag=true;
+
   constructor(private data:DataService) { 
 
   }
@@ -31,7 +35,7 @@ export class TabsComponent implements OnInit {
   }
 
   typeOfSurvey(type:any){
-   
+    this.dashboardFlag=true;
     this.type=type.tab.textLabel;
     this.data.setType(type.tab.textLabel);
     this.filteredData=this.data.getData();
@@ -49,6 +53,8 @@ export class TabsComponent implements OnInit {
 
 
   }
+
+
   oncheck(){
     
    
@@ -95,6 +101,17 @@ export class TabsComponent implements OnInit {
     this.startDateFiltered='';
     this.endDateFiltered='';
     this.filteredData=this.data.getData();
+  }
+
+  filterButton(){
+    this.filterButtonFlag=!this.filterButtonFlag;
+  }
+
+  selctedCard(event:any){
+    
+    this.selctedCardInfo=event;
+    this.dashboardFlag=false;
+
   }
  
 
