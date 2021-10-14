@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 
 @Component({
@@ -22,29 +22,37 @@ export class TabsComponent implements OnInit {
 
   dashboardFlag=true;
 
+  modelFlag=true;
+  listFlag=false;
+
+
   constructor(private data:DataService) { 
 
   }
 
   ngOnInit(): void {
 
-    this.filteredData=this.data.getData();
-    console.log('tabs im here ---------------------');
+    this.filteredData=this.data.getData(this.type);
+    
 
 
   }
 
   typeOfSurvey(type:any){
+    console.log(type,'this is in typeOfSurvey func')
+
+    this.data.preSelcetedCard='';
+    this.data.slectedCard='',
+    this.type=type.tab.textLabel;
     this.dashboardFlag=true;
     this.type=type.tab.textLabel;
-    this.data.setType(type.tab.textLabel);
-    this.filteredData=this.data.getData();
+    this.filteredData=this.data.getData(type.tab.textLabel);
   }
 
   onTyping(){
     if (this.serchKey=='') {
       this.filteredData=[]
-      this.filteredData=this.data.getData();
+      this.filteredData=this.data.getData('');
     }else {
     this.filteredData=[];
     this.filteredData=this.data.searchByName(this.serchKey,this.type);
@@ -63,11 +71,11 @@ export class TabsComponent implements OnInit {
   searchByDate(){
   
     if (this.startDateFiltered==''&&this.endDateFiltered=='') {
-      this.filteredData=[]
-      this.filteredData=this.data.getData();
+      this.filteredData=[];
+      this.filteredData=this.data.getData(this.type);
     }else {
     this.filteredData=[];
-    this.filteredData=this.data.searchByDate(this.convertDate(),this.convertedEnd());
+    this.filteredData=this.data.searchByDate(this.convertDate(),this.convertedEnd(),this.type);
     }
     
     
@@ -96,22 +104,35 @@ export class TabsComponent implements OnInit {
   }
 
   clear(){
-    
-    console.log(this.filteredData)
     this.startDateFiltered='';
     this.endDateFiltered='';
-    this.filteredData=this.data.getData();
+    this.filteredData=this.data.getData(this.type);
   }
 
   filterButton(){
     this.filterButtonFlag=!this.filterButtonFlag;
   }
 
-  selctedCard(event:any){
-    
-    this.selctedCardInfo=event;
+  clicked(){
     this.dashboardFlag=false;
 
+
+
+  }
+
+  viewChangeOnClick(type:string){
+  
+    if (type=='list') {
+      if (this.listFlag==false) {
+        this.listFlag=!this.listFlag;
+        this.modelFlag=!this.modelFlag;
+      }
+    }else{
+      if (this.modelFlag==false) {
+        this.listFlag=!this.listFlag;
+        this.modelFlag=!this.modelFlag;
+      }
+    }
   }
  
 

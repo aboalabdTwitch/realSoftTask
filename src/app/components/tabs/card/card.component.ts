@@ -12,10 +12,12 @@ import { DataService } from 'src/app/data.service';
 export class CardComponent implements OnInit {
 
   showFlag :boolean=false;
+
   @Input() filteredData2!:any;
   @Input() type:string="Published";
 
-  filterData!:any[];
+  @Input() viewModel:any;
+  
 
 
   currentID=this.data.slectedCard;
@@ -40,7 +42,6 @@ export class CardComponent implements OnInit {
 
   
   ngOnInit(): void {
-    this.filterData=this.data.getData()
     }
 
 
@@ -51,7 +52,8 @@ export class CardComponent implements OnInit {
   } 
 
     onSelected(card:any,type:string){
-      console.log( this.data.preSelcetedCard+" pre commit ")
+
+     
 
       if (type=='Published') {
         if (this.data.preSelcetedCard=='') {
@@ -90,6 +92,7 @@ export class CardComponent implements OnInit {
 
 
     selectedDate(data :any){
+
       this.selectedDateStart=data.START_DATE;
       this.selectedDateEnd=data.END_DATE;
       this.showFlag=false;
