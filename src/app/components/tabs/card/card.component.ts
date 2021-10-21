@@ -1,7 +1,7 @@
 import { JsonpClientBackend } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscriber, Subscription } from 'rxjs';
-import { DataService } from 'src/app/data.service';
+import { DataService } from 'src/app/shared/data.service';
 
 
 @Component({
@@ -109,6 +109,7 @@ export class CardComponent implements OnInit {
 
     }
 
+   
 }
   
 

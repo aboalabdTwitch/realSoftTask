@@ -12,7 +12,10 @@
     (click)='onSelected(filteredData2,filteredData2.SURVEY_STATUS_EN)'>
 
     <div class="cardIcon">
-    <span class="material-icons rot-45">send</span>
+    <!-- <span class="material-icons rot-45">send</span> -->
+    <span class="material-icons rot-45 center" *ngIf="filteredData2.SURVEY_STATUS_EN==='Published'">send</span>
+      <span class="material-icons rot-45 center" *ngIf="filteredData2.SURVEY_STATUS_EN==='Expired'">alarm_on</span>
+      <span class="material-icons rot-45 center" *ngIf="filteredData2.SURVEY_STATUS_EN==='Closed'">lock</span>
   </div>
 
   <div class="cardName mt-2">{{filteredData2.SurveyNameEn}}</div>

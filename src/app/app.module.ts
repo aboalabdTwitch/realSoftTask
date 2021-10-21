@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import {MatListModule} from '@angular/material/list';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponeents} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
@@ -17,8 +17,23 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { TabsComponent } from './components/tabs/tabs.component';
 import {MatButtonModule} from '@angular/material/button';
-import { DataService } from './data.service';
+import { DataService } from './shared/data.service';
 import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { ToastrModule } from 'ngx-toastr';
+import { TableComponent } from './components/tabs/table/table.component';
+
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
+import { ValidationComponent } from './components/validation/validation.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { DirectiveDirective } from './shared/directive.directive';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 
@@ -27,7 +42,11 @@ import {MatInputModule} from '@angular/material/input';
   declarations: [
     AppComponent,
     CardComponent,
-    TabsComponent
+    DialogComponent,
+    TableComponent,
+    routingComponeents,
+    DirectiveDirective
+
   ],
   imports: [
     BrowserModule,
@@ -36,6 +55,7 @@ import {MatInputModule} from '@angular/material/input';
     BrowserAnimationsModule,
     MatTableModule,
     MatCardModule,
+    HttpClientModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
@@ -43,7 +63,14 @@ import {MatInputModule} from '@angular/material/input';
     MatTabsModule,
     FontAwesomeModule,
     MatListModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    ToastrModule.forRoot(), 
+    MatSortModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    ReactiveFormsModule
+
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

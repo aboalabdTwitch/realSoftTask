@@ -1,22 +1,4 @@
-<div class="d-flex bd-highlight">
-  <div class="p-2 w-100 bd-highlight">
-    <a class="navbar-brand" href="#">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Mu%E1%B8%A5ammad_ibn_M%C5%ABs%C4%81_al-Khw%C4%81rizm%C4%AB.png"
-        width="30"
-        height="30"
-        class="d-inline-block align-top"
-        alt=""
-      />
-      Al Khwarizmy
-    </a>
-  </div>
 
-  <p style="margin-left: 1050px" class="p-2 flex-shrink-1 bd-highlight">|</p>
-  <a href="#" class="p-2 flex-shrink-1 bd-highlight" style="margin-right: 2px"
-    >العربيه</a
-  >
-</div>
 
 <div class="d-flex bd-highlight">
   <mat-tab-group
@@ -24,40 +6,85 @@
     class="p-2 w-100 bd-highlight"
   >
     <mat-tab label="Published">
-      <app-card
-        [type]="type"
-        *ngFor="let data of filteredData"
-        (click)='clicked()'
-        [filteredData2]="data"
-        [viewModel]="modelFlag ? 'model':'list'"
-      ></app-card
-    ></mat-tab>
+      <div></div>
+
+      <ng-container *ngIf="modelType == 'model'">
+        <app-card
+          [type]="type"
+          *ngFor="let data of filteredData"
+          (click)="clicked()"
+          [filteredData2]="data"
+          [viewModel]="modelFlag ? 'model' : 'list'"
+        ></app-card>
+      </ng-container>
+
+      <ng-container *ngIf="modelType == 'list'">
+        <app-table
+          [type]="type"
+          (click)="clicked()"
+          [filteredData2]="filteredData"
+
+       
+        ></app-table>
+      </ng-container>
+    </mat-tab>
+
     <mat-tab label="Expired">
-      <app-card
-      (click)='clicked()'
-        [type]="type"
-        *ngFor="let data of filteredData"
-        [filteredData2]="data"
-        [viewModel]="modelFlag ? 'model':'list'"
-      ></app-card>
+      <ng-container *ngIf="modelType == 'model'">
+        <app-card
+          (click)="clicked()"
+          [type]="type"
+          *ngFor="let data of filteredData"
+          [filteredData2]="data"
+          [viewModel]="modelFlag ? 'model' : 'list'"
+        ></app-card>
+      </ng-container>
+
+      <ng-container *ngIf="modelType == 'list'">
+        <app-table
+          (click)="clicked()"
+          [type]="type"
+          [filteredData2]="filteredData"
+        ></app-table>
+      </ng-container>
     </mat-tab>
     <mat-tab label="Closed">
-      <app-card
-      (click)='clicked()'
-        [type]="type"
-        *ngFor="let data of filteredData"
-        [filteredData2]="data"
-        [viewModel]="modelFlag ? 'model':'list'"
-      ></app-card>
+      <ng-container *ngIf="modelType == 'model'">
+        <app-card
+          (click)="clicked()"
+          [type]="type"
+          *ngFor="let data of filteredData"
+          [filteredData2]="data"
+          [viewModel]="modelFlag ? 'model' : 'list'"
+        ></app-card>
+      </ng-container>
+
+      <ng-container *ngIf="modelType == 'list'">
+        <app-table
+          (click)="clicked()"
+          [type]="type"
+          [filteredData2]="filteredData"
+        ></app-table>
+      </ng-container>
     </mat-tab>
     <mat-tab label="All Surveys">
-      <app-card
-      (click)='clicked()'
-        [type]="type"
-        *ngFor="let data of filteredData"
-        [filteredData2]="data"
-        [viewModel]="modelFlag ? 'model':'list'"
-      ></app-card>
+      <ng-container *ngIf="modelType == 'model'">
+        <app-card
+          (click)="clicked()"
+          [type]="type"
+          *ngFor="let data of filteredData"
+          [filteredData2]="data"
+          [viewModel]="modelFlag ? 'model' : 'list'"
+        ></app-card>
+      </ng-container>
+
+      <ng-container *ngIf="modelType == 'list'">
+        <app-table
+          (click)="clicked()"
+          [type]="type"
+          [filteredData2]="filteredData"
+        ></app-table>
+      </ng-container>
     </mat-tab>
   </mat-tab-group>
 
@@ -66,6 +93,7 @@
       mat-button
       class="d-inline-block ml-2 greenBtn"
       [disabled]="dashboardFlag"
+      (click)="openDialog()"
     >
       GO TO DASHBOARD
     </button>
@@ -73,7 +101,7 @@
   <div class="p-2 flex-shrink-1 bd-highlight">
     <input
       type="search"
-      [(ngModel)]="serchKey"
+      [(ngModel)]="searchKey"
       class="form-control rounded"
       placeholder="Search"
       aria-label="Search"
@@ -88,12 +116,14 @@
       class="d-inline-block ml-2"
       mat-stroked-button
       (click)="filterButton()"
+      appDirective
     >
       FILTER
     </button>
-    <div class="filterOp" [hidden]="filterButtonFlag">
+
+    <div class="filterOp" [hidden]="filterButtonFlag" >
       <div class="text-right">
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="example-full-width" appearance="fill" >
           <mat-label>Start Date</mat-label>
           <input
             type="date"
@@ -127,10 +157,16 @@
     </div>
 
     <div class="align-self-end sort">
-      <span [ngClass]="listFlag? 'material-icons active' :'material-icons'"
-       (click)='viewChangeOnClick("list")'>view_list</span>
-      <span [ngClass]="modelFlag? 'material-icons active' :'material-icons'" 
-      (click)='viewChangeOnClick("model")'>view_module</span>
+      <span
+        [ngClass]="listFlag ? 'material-icons active' : 'material-icons'"
+        (click)="viewChangeOnClick('list')"
+        >view_list</span
+      >
+      <span
+        [ngClass]="modelFlag ? 'material-icons active' : 'material-icons'"
+        (click)="viewChangeOnClick('model')"
+        >view_module</span
+      >
     </div>
   </div>
 </div>

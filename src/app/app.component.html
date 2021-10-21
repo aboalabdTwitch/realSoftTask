@@ -1,14 +1,28 @@
 
 
     
-    <!-- <div style="margin: 20px 20px 20px 20px; display: flex;
-    justify-content: center;
-    flex-direction: column; ">
-<app-tabs></app-tabs>
+<div class="d-flex bd-highlight">
+    <div class="p-2 w-100 bd-highlight">
+      <a class="navbar-brand" routerLink="/">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Mu%E1%B8%A5ammad_ibn_M%C5%ABs%C4%81_al-Khw%C4%81rizm%C4%AB.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt=""
+        />
+        Al Khwarizmy
+      </a>
+    </div>
+    <div class="circle p-2 bd-highlight"> <a routerLink="/change" routerLinkActive="active">{{firstName}}{{lastName}}</a></div>
+    <div class="p-2 bd-highlight"><p>{{user}}</p></div>
+  
+    <p class="p-2 bd-highlight">|</p>
+    <a href="#" class="p-2 bd-highlight" style="margin-right: 2px">العربيه</a>
+  </div>
+  
+<!-- <app-tabs></app-tabs> -->
 
-</div> -->
-
+<router-outlet></router-outlet>
   
-<app-tabs></app-tabs>
-  
-  
+<!-- <app-validation></app-validation> -->
