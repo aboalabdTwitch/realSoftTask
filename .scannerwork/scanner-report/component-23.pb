@@ -1,0 +1,1 @@
+ 2cssX±hr/src/app/components/tabs/card/card.component.css

@@ -32,6 +32,7 @@ export class TabsComponent implements OnInit {
   listFlag=false;
   curData:any=[];
 
+  
  
 
  
@@ -51,6 +52,9 @@ export class TabsComponent implements OnInit {
         this.data.setData( this.filteredData);
         this.filteredData=this.data.getData(this.type);
       } )
+
+      
+      
 
   }
  

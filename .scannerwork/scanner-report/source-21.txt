@@ -1,0 +1,16 @@
+
+<h3><b>Survey</b>  </h3>
+
+
+<mat-form-field class="example-full-width">
+    <input matInput placeholder="Survey Name" [value]='surveyName' [(ngModel)]='surveyName'>
+  </mat-form-field>
+
+
+<div class="d-flex justify-content-evenly">
+    <button type="button" class="btn btn-light" (click)='onNoClick()'>No Thanks</button>
+    <button type="button" class="btn btn-dark" style="background-color: #ABABAB; color: black;" (click)='saveEditedInfo()'>OK</button>
+    <button type="button" class="btn btn-dark" style="background-color: #f37070; color: black;" (click)='deleteSurvey()'>Delete</button>
+
+</div>
+
