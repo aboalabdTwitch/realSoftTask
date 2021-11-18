@@ -15,25 +15,58 @@ export class DataService {
    preSelcetedCard='';
    slectedCard='';
 
-   url='http://localhost:3000/surveys'
+   url='http://localhost:3000/'
+
+   role!:string;
+   username!:string;
+   
+//   url='https://shielded-badlands-14846.herokuapp.com/'
+
    //url='https://jsonplaceholder.typicode.com/users'
 
 
   constructor(private http :HttpClient) { }
 
+  setInfo(role:string,username:string){
+     this.role=role;
+     this.username=username;
+
+  }
+
+  isLoggedIn(){
+     return !!localStorage.getItem('token');
+  }
+
+  getrole(){
+     return localStorage.getItem('role');
+  }
+
+  login(user:any){
+     return this.http.post(this.url+"login",user);
+  }
+
 
   getData2(){
-     return this.http.get(this.url);
+     return this.http.get(this.url+'surveys');
 
+  }
+
+  updateSurveyName(id:string,body:any){
+    return this.http.put(this.url+'update/'+id,body)
+  }
+
+  deleteSurvey(id:string){
+     return this.http.delete(this.url+'delete/'+id)
+
+  }
+
+  addSurvey(survey:any){
+     return this.http.post(this.url+'add',survey)
   }
 
    dataJson!:any[];
  
 
-
-   // setType(type:string){
-   //    this.type=type;
-   // }
 
    setData(data:any[]){
       this.dataJson=data;
@@ -158,6 +191,22 @@ export class DataService {
        }
     }
  }
+
+//  deleteSurvey(id:string){
+//     let newData=[];
+//     let arrayOfNewData=[];
+//     for(let survey of this.dataJson[0] )
+//     {
+//       if (survey.TEMPLATE_ID!=id) 
+//       {
+//          newData.push(survey);
+//       }
+
+//     }
+//     arrayOfNewData.push(newData);
+//     this.dataJson=arrayOfNewData;
+
+//  }
 
 
   }

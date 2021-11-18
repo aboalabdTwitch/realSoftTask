@@ -1,0 +1,63 @@
+
+
+    <div class="surCard col-3" *ngIf='viewModel=="model"'>
+
+  <div class="container" >
+    <div class="row row-cols-0">
+      <div  class="col">
+
+         
+  <mat-card [ngClass]='filteredData2.SURVEY_STATUS_EN== "Published" ?"published" :"expired"' 
+   id={{filteredData2.TEMPLATE_ID}} 
+    (click)='onSelected(filteredData2,filteredData2.SURVEY_STATUS_EN)'>
+
+    <div class="cardIcon">
+    <!-- <span class="material-icons rot-45">send</span> -->
+    <span class="material-icons rot-45 center" *ngIf="filteredData2.SURVEY_STATUS_EN==='Published'">send</span>
+      <span class="material-icons rot-45 center" *ngIf="filteredData2.SURVEY_STATUS_EN==='Expired'">alarm_on</span>
+      <span class="material-icons rot-45 center" *ngIf="filteredData2.SURVEY_STATUS_EN==='Closed'">lock</span>
+  </div>
+
+  <div class="cardName mt-2">{{filteredData2.SurveyNameEn}}</div>
+
+  <div class="surPeriod" >
+    <span *ngIf="JSONMe(filteredData2.SurveyPeriods)&& JSONMe(filteredData2.SurveyPeriods).length == 1" > 
+      {{JSONMe(filteredData2.SurveyPeriods)[0].START_DATE | date:'dd/MM/yyyy'}} - {{  JSONMe(filteredData2.SurveyPeriods)[0].END_DATE | date:'dd/MM/yyyy'}} </span>
+
+     <span *ngIf="selectedDateStart!=null" > {{selectedDateStart | date:'dd/MM/yyyy'}} - {{selectedDateEnd |date:'dd/MM/yyyy' }} </span>
+
+    <span *ngIf="selectedDateStart==null && filteredData2.SurveyPeriods!=null && JSONMe(filteredData2.SurveyPeriods).length >1  " >
+     
+    <div >
+    <p>select period   <mat-icon (click)="show()" >more_vert </mat-icon></p>
+    </div>
+    <mat-card *ngIf="showFlag" style="margin: -17px 0; float: left;"> 
+ 
+      <span>
+        <mat-list-item *ngFor="let item of JSONMe(filteredData2.SurveyPeriods)">
+      
+        
+          <ul [id]="item.ID" (click)="selectedDate(item)"
+           style="border: 0px;" *ngIf="showFlag" > 
+           <span style="color: #686868 ;" >{{item.START_DATE |date:'dd/MM/yyyy' }} - {{item.END_DATE |date:'dd/MM/yyyy'}}</span> 
+          </ul>
+        </mat-list-item>
+ 
+      </span> 
+    </mat-card>
+    </span> 
+  </div>
+ 
+</mat-card> 
+ 
+
+</div>
+</div>
+</div>
+</div>
+  
+
+ 
+
+
+

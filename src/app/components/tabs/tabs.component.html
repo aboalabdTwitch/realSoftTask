@@ -101,10 +101,20 @@
       class="d-inline-block ml-2 greenBtn"
       [disabled]="dashboardFlag"
       (click)="openDialog()"
+      
     >
       GO TO DASHBOARD
     </button>
+    <br>
+      <button
+        mat-button
+        class="d-inline-block ml-2 greenBtn"
+        routerLink="/add"
+      >
+        Add Survey
+      </button>
   </div>
+  
   <div class="p-2 flex-shrink-1 bd-highlight">
     <input
       type="search"

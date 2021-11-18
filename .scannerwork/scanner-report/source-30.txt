@@ -1,0 +1,181 @@
+
+
+<div class="d-flex bd-highlight">
+  <mat-tab-group
+    (selectedTabChange)="typeOfSurvey($event)"
+    class="p-2 w-100 bd-highlight"
+  >
+    <mat-tab label="Published">
+      <div></div>
+
+      <ng-container *ngIf="modelType == 'model'">
+        <app-card
+          [type]="type"
+          *ngFor="let data of filteredData"
+          (click)="clicked()"
+          [filteredData2]="data"
+          [viewModel]="modelFlag ? 'model' : 'list'"
+        ></app-card>
+      </ng-container>
+
+      <ng-container *ngIf="modelType == 'list'">
+        <app-table
+          [type]="type"
+          (click)="clicked()"
+          [filteredData2]="filteredData"
+
+       
+        ></app-table>
+      </ng-container>
+    </mat-tab>
+
+    <mat-tab label="Expired">
+      <ng-container *ngIf="modelType == 'model'">
+        <app-card
+          (click)="clicked()"
+          [type]="type"
+          *ngFor="let data of filteredData"
+          [filteredData2]="data"
+          [viewModel]="modelFlag ? 'model' : 'list'"
+        ></app-card>
+      </ng-container>
+
+      <ng-container *ngIf="modelType == 'list'">
+        <app-table
+          (click)="clicked()"
+          [type]="type"
+          [filteredData2]="filteredData"
+        ></app-table>
+      </ng-container>
+    </mat-tab>
+    <mat-tab label="Closed">
+      <ng-container *ngIf="modelType == 'model'">
+        <app-card
+          (click)="clicked()"
+          [type]="type"
+          *ngFor="let data of filteredData"
+          [filteredData2]="data"
+          [viewModel]="modelFlag ? 'model' : 'list'"
+        ></app-card>
+      </ng-container>
+
+      <ng-container *ngIf="modelType == 'list'">
+        <app-table
+          (click)="clicked()"
+          [type]="type"
+          [filteredData2]="filteredData"
+        ></app-table>
+      </ng-container>
+    </mat-tab>
+    <mat-tab label="All Surveys">
+      <ng-container *ngIf="modelType == 'model'">
+        <app-card
+          (click)="clicked()"
+          [type]="type"
+          *ngFor="let data of filteredData"
+          [filteredData2]="data"
+          [viewModel]="modelFlag ? 'model' : 'list'"
+        ></app-card>
+      </ng-container>
+
+      <ng-container *ngIf="modelType == 'list'">
+        <app-table
+          (click)="clicked()"
+          [type]="type"
+          [filteredData2]="filteredData"
+        ></app-table>
+      </ng-container>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="p-2 flex-shrink-1 bd-highlight">
+    <button
+      mat-button
+      class="d-inline-block ml-2 greenBtn"
+      [disabled]="dashboardFlag"
+      (click)="openDialog()"
+    >
+      GO TO DASHBOARD
+    </button>
+    <br>
+      <button
+        mat-button
+        class="d-inline-block ml-2 greenBtn"
+        routerLink="/add"
+      >
+        Add Survey
+      </button>
+  </div>
+  
+  <div class="p-2 flex-shrink-1 bd-highlight">
+    <input
+      type="search"
+      [(ngModel)]="searchKey"
+      class="form-control rounded"
+      placeholder="Search"
+      aria-label="Search"
+      id="search"
+      aria-describedby="search-addon"
+      (keyup)="onTyping()"
+    />
+  </div>
+
+  <div class="p-2 flex-shrink-1 bd-highlight">
+    <button
+      class="d-inline-block ml-2"
+      mat-stroked-button
+      (click)="filterButton()"
+      appDirective
+    >
+      FILTER
+    </button>
+
+    <div class="filterOp" [hidden]="filterButtonFlag" >
+      <div class="text-right">
+        <mat-form-field class="example-full-width" appearance="fill" >
+          <mat-label>Start Date</mat-label>
+          <input
+            type="date"
+            matInput
+            placeholder="11/4/1998"
+            [(ngModel)]="startDateFiltered"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>End Date</mat-label>
+          <input
+            type="date"
+            matInput
+            placeholder="11/4/1998"
+            [(ngModel)]="endDateFiltered"
+          />
+        </mat-form-field>
+
+        <button mat-button class="d-inline-block ml-2 secBtn" (click)="clear()">
+          CLEAR
+        </button>
+        <button
+          mat-button
+          class="d-inline-block ml-2 greenBtn"
+          (click)="searchByDate()"
+        >
+          APPLY
+        </button>
+      </div>
+    </div>
+
+    <div class="align-self-end sort">
+      <span
+        [ngClass]="listFlag ? 'material-icons active' : 'material-icons'"
+        (click)="viewChangeOnClick('list')"
+        >view_list</span
+      >
+      <span
+        [ngClass]="modelFlag ? 'material-icons active' : 'material-icons'"
+        (click)="viewChangeOnClick('model')"
+        >view_module</span
+      >
+    </div>
+  </div>
+</div>

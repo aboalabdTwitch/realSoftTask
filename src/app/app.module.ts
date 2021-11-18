@@ -32,6 +32,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DirectiveDirective } from './shared/directive.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { AddSurveysComponent } from './components/add-surveys/add-surveys.component';
+import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 
@@ -45,7 +48,10 @@ import { HttpClientModule } from '@angular/common/http';
     DialogComponent,
     TableComponent,
     routingComponeents,
-    DirectiveDirective
+    DirectiveDirective,
+    AddSurveysComponent,
+    LoginComponent,
+    HeaderComponent
 
   ],
   imports: [

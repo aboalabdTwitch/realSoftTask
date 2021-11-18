@@ -1,0 +1,19 @@
+<form   (submit)="submit()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">ID</label>
+        <input type="text" class="form-control" id="inputEmail4" placeholder="ID" [(ngModel)]='surveyId' [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Survey Name</label>
+        <input type="text" class="form-control" id="inputPassword4" placeholder="Name" [(ngModel)]='surveyName' [ngModelOptions]="{standalone: true}">
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputAddress">Status</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="Status" [(ngModel)]='surveyStatus' [ngModelOptions]="{standalone: true}">
+    </div>
+    <br><br>
+    
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>

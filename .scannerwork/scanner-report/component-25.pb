@@ -1,0 +1,1 @@
+ 2tsXuhr.src/app/components/tabs/card/card.component.ts
