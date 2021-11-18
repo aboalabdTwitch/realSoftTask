@@ -4,6 +4,7 @@ import { DataService } from 'src/app/shared/data.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ToastrService } from 'ngx-toastr';
 import { users } from 'src/app/shared/users';
+import { Surveys } from './model';
 
 @Component({
   selector: 'app-tabs',
@@ -183,7 +184,16 @@ export class TabsComponent implements OnInit {
   }
 
 
+  selectCard(Survey:Surveys){
+    this.filteredData.forEach((surveys:Surveys) => {
+      surveys.isSelected=false;
+    });
+    let objIndex = this.filteredData.findIndex(((obj:Surveys) => obj.TEMPLATE_ID == Survey.TEMPLATE_ID));
+    this.filteredData[objIndex].isSelected = true;
 
+    console.log(this.filteredData);
+
+  }
 
 
 

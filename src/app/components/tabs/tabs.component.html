@@ -14,6 +14,7 @@
           *ngFor="let data of filteredData"
           (click)="clicked()"
           [filteredData2]="data"
+          (cardSelected)='selectCard($event)'
           [viewModel]="modelFlag ? 'model' : 'list'"
         ></app-card>
       </ng-container>
@@ -23,6 +24,7 @@
           [type]="type"
           (click)="clicked()"
           [filteredData2]="filteredData"
+          
 
        
         ></app-table>
@@ -37,6 +39,7 @@
           *ngFor="let data of filteredData"
           [filteredData2]="data"
           [viewModel]="modelFlag ? 'model' : 'list'"
+          (cardSelected)='selectCard($event)'
         ></app-card>
       </ng-container>
 
@@ -45,6 +48,7 @@
           (click)="clicked()"
           [type]="type"
           [filteredData2]="filteredData"
+          
         ></app-table>
       </ng-container>
     </mat-tab>
@@ -56,6 +60,7 @@
           *ngFor="let data of filteredData"
           [filteredData2]="data"
           [viewModel]="modelFlag ? 'model' : 'list'"
+          (cardSelected)='selectCard($event)'
         ></app-card>
       </ng-container>
 
@@ -64,6 +69,7 @@
           (click)="clicked()"
           [type]="type"
           [filteredData2]="filteredData"
+          
         ></app-table>
       </ng-container>
     </mat-tab>
@@ -75,6 +81,7 @@
           *ngFor="let data of filteredData"
           [filteredData2]="data"
           [viewModel]="modelFlag ? 'model' : 'list'"
+          (cardSelected)='selectCard($event)'
         ></app-card>
       </ng-container>
 

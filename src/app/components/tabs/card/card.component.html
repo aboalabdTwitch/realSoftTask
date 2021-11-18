@@ -6,8 +6,8 @@
     <div class="row row-cols-0">
       <div  class="col">
 
-         
-  <mat-card [ngClass]='filteredData2.SURVEY_STATUS_EN== "Published" ?"published" :"expired"' 
+        <!-- filteredData2.SURVEY_STATUS_EN== "Published" ?"published" :"expired" || -->
+  <mat-card [ngClass]='filteredData2.SURVEY_STATUS_EN== "Published"&&filteredData2.isSelected ? "published publishedActive active" :filteredData2.isSelected?"expired publishedActive active " :filteredData2.SURVEY_STATUS_EN== "Published"? "published" : "expired"' 
    id={{filteredData2.TEMPLATE_ID}} 
     (click)='onSelected(filteredData2,filteredData2.SURVEY_STATUS_EN)'>
 

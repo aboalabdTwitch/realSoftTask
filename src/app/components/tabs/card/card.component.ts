@@ -2,6 +2,7 @@ import { JsonpClientBackend } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscriber, Subscription } from 'rxjs';
 import { DataService } from 'src/app/shared/data.service';
+import { Surveys } from '../model';
 
 
 @Component({
@@ -51,37 +52,41 @@ export class CardComponent implements OnInit {
       }else return false
   } 
 
-    onSelected(card:any,type:string){
+    onSelected(card:Surveys,type:string){
+
+      card.isSelected=true;
+      this.cardSelected.emit(card);
+
 
      
 
-      if (type=='Published') {
-        if (this.data.preSelcetedCard=='') {
-          this.cardSelected.emit(card);
-          this.data.slectedCard=card.TEMPLATE_ID;
-          document.getElementById(card.TEMPLATE_ID)?.classList.toggle("published");
+      // if (type=='Published') {
+      //   if (this.data.preSelcetedCard=='') {
+      //     this.cardSelected.emit(card);
+      //     this.data.slectedCard=card.TEMPLATE_ID;
+      //     document.getElementById(card.TEMPLATE_ID)?.classList.toggle("published");
   
-          this.data.preSelcetedCard=this.data.slectedCard;
-        }else{
-          document.getElementById(this.data.preSelcetedCard)?.classList.toggle("published");
-          document.getElementById(card.TEMPLATE_ID)?.classList.toggle("published");
-          this.data.slectedCard=card.TEMPLATE_ID;
-          this.data.preSelcetedCard=this.data.slectedCard;
+      //     this.data.preSelcetedCard=this.data.slectedCard;
+      //   }else{
+      //     document.getElementById(this.data.preSelcetedCard)?.classList.toggle("published");
+      //     document.getElementById(card.TEMPLATE_ID)?.classList.toggle("published");
+      //     this.data.slectedCard=card.TEMPLATE_ID;
+      //     this.data.preSelcetedCard=this.data.slectedCard;
   
-        }
-      }
+      //   }
+      // }
       
       
-      else{
+      // else{
         
-          document.getElementById(this.data.preSelcetedCard)?.classList.toggle("expired");
-          document.getElementById(card.TEMPLATE_ID)?.classList.toggle("expired");
-          this.data.slectedCard=card.TEMPLATE_ID;
-          this.data.preSelcetedCard=this.data.slectedCard;
+      //     document.getElementById(this.data.preSelcetedCard)?.classList.toggle("expired");
+      //     document.getElementById(card.TEMPLATE_ID)?.classList.toggle("expired");
+      //     this.data.slectedCard=card.TEMPLATE_ID;
+      //     this.data.preSelcetedCard=this.data.slectedCard;
   
         
 
-      }
+      // }
       
      
 
